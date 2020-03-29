@@ -1,0 +1,39 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type AuthToken {
+  id: ID!
+  token: String!
+}
+
+type Mutation {
+  addUser(newUser: UserInput!): User!
+  deleteUserById(id: String!): User!
+}
+
+type Query {
+  getAllUsers: [User!]!
+  getUserByName(username: String!): User!
+  login(loginUser: UserInput!): AuthToken!
+}
+
+enum ROLES {
+  ADMIN
+  TEACHER
+  STUDENT
+}
+
+type User {
+  id: ID!
+  username: String!
+  password: String!
+  role: ROLES!
+}
+
+input UserInput {
+  id: String
+  username: String!
+  password: String!
+  role: String!
+}

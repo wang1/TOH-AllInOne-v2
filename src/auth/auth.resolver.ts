@@ -1,0 +1,20 @@
+import { Resolver, Query, Args } from '@nestjs/graphql';
+import { AuthToken } from './dto/auth-token.model';
+import { UserInput } from 'src/user/dto/user.input';
+import { AuthService } from './auth.service';
+
+@Resolver('Auth')
+export class AuthResolver {
+  constructor(private authService: AuthService) { }
+
+  @Query(() => AuthToken)
+  // @UseGuards(LocalAuthGuard)
+  async login(@Args('loginUser') userInput: UserInput) {
+    return this.authService.validateUser(userInput);
+  }
+
+  @Query(() => String)
+  async logout() {
+    return this.authService.logout();
+  }
+}
