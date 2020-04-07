@@ -1,7 +1,11 @@
 import { registerEnumType } from '@nestjs/graphql'
 
-export const jwtConstants = {
-  secret: 'haha',
+export const Constants = {
+  MONGODB_URL: 'mongodb://localhost/authTest',
+  SCHEMA_FILENAME: 'schema.gql',
+  JWT_SECRET: 'haha',
+  USER_MODEL: 'UserModel',
+  HERO_MODEL: 'HeroModel',
 };
 
 export enum ROLES {

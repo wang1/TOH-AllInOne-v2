@@ -1,6 +1,5 @@
 import { InputType } from '@nestjs/graphql';
 import { MinLength } from 'class-validator';
-import { ROLES } from 'src/assets/constants';
 
 @InputType()
 export class UserInput {

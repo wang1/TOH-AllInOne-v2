@@ -7,15 +7,41 @@ type AuthToken {
   token: String!
 }
 
+type Hero {
+  id: ID!
+  salary: Float
+  no: String!
+  name: String!
+  description: String
+  isTop: Boolean
+}
+
+input HeroInput {
+  salary: Float
+  id: String
+  no: String!
+  name: String!
+  description: String
+  isTop: Boolean
+}
+
 type Mutation {
-  addUser(newUser: UserInput!): User!
+  addUser(userInput: UserInput!): User!
   deleteUserById(id: String!): User!
+  newHero(heroInput: HeroInput!): Hero!
+  updateHero(heroInput: HeroInput!): Hero!
+  deleteHeroById(id: String!): Hero!
 }
 
 type Query {
   getAllUsers: [User!]!
   getUserByName(username: String!): User!
   login(loginUser: UserInput!): AuthToken!
+  logout: String!
+  getAllHeroes: [Hero!]!
+  getTopHeroes: [Hero!]!
+  getOneHeroById(id: String!): Hero!
+  getHeroesBySomeStringInName(someStringInName: String!): [Hero!]!
 }
 
 enum ROLES {

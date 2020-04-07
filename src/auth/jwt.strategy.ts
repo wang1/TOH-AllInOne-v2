@@ -1,7 +1,7 @@
 import { Injectable, ExecutionContext, Inject } from '@nestjs/common';
 import { PassportStrategy } from '@nestjs/passport';
 import { Strategy, ExtractJwt } from 'passport-jwt';
-import { jwtConstants } from 'src/assets/constants';
+import { Constants } from 'src/assets/constants';
 
 @Injectable()
 export class JwtStrategy extends PassportStrategy(Strategy) {
@@ -13,7 +13,7 @@ export class JwtStrategy extends PassportStrategy(Strategy) {
     super({
       jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
       ignoreExpiration: false,
-      secretOrKey: jwtConstants.secret,
+      secretOrKey: Constants.JWT_SECRET,
     });
   }
   // 重写validate方法。对于jwt策略，Passport首先校验签名即令牌，然后解码为JSON格式的payload，然后再调用此方法

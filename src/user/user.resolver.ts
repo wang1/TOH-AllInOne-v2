@@ -1,7 +1,7 @@
 import { Resolver, Query, Args, Mutation } from '@nestjs/graphql';
 import { UserService } from './user.service';
-import { User } from './model/user.model';
-import { UserInput } from './dto/user.input';
+import { User } from './user.model';
+import { UserInput } from './user.input';
 import { UseGuards } from '@nestjs/common';
 import { JwtAuthGuard } from 'src/auth/jwt-auth.guard';
 import { CurrentUser, Roles } from 'src/assets/decorators';
@@ -22,18 +22,18 @@ export class UserResolver {
 
   @Query(() => User)
   async getUserByName(@Args('username') username: string) {
-    return this.userService.findOne(username);
+    return this.userService.findOneByName(username);
   }
 
   @Mutation(() => User)
   @UseGuards(JwtAuthGuard)
-  async addUser(@Args('newUser') userInput: UserInput) {
+  async addUser(@Args('userInput') userInput: UserInput) {
     return this.userService.create(userInput);
   }  
 
   @Mutation(() => User)
   @UseGuards(JwtAuthGuard)
   async deleteUserById(@Args('id') id: string) {
-    return this.userService.deleteById(id);
+    return this.userService.deleteOneById(id);
   }
 }

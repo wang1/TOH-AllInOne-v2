@@ -1,14 +1,15 @@
 import { Injectable } from '@nestjs/common';
-import { User } from './model/user.model';
+import { User } from './user.model';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
-import { UserInput } from './dto/user.input';
+import { UserInput } from './user.input';
 import * as bcryptjs from 'bcryptjs';
+import { Constants } from 'src/assets/constants';
 
 @Injectable()
 export class UserService {
 
-  constructor(@InjectModel('UserModel') private userModel: Model<User>) { }
+  constructor(@InjectModel(Constants.USER_MODEL) private userModel: Model<User>) { }
 
   async create(userInput: UserInput): Promise<User> {
     // 10是默认的盐值，将与密码一起被hash，有固定长度16b及位置
@@ -17,18 +18,18 @@ export class UserService {
   }
 
   async findAll(): Promise<User[]> {
-    return await this.userModel.find().exec();
+    return await this.userModel.find();
   }
 
-  async findOne(username: string): Promise<User> {
+  async findOneByName(username: string): Promise<User> {
     return await this.userModel.findOne({username: username});
   }
 
-  async findById(id: string): Promise<User> {
-    return await this.userModel.findById(id).exec();
+  async findOneById(id: string): Promise<User> {
+    return await this.userModel.findById(id);
   }
 
-  async deleteById(id: string): Promise<boolean> {
+  async deleteOneById(id: string): Promise<boolean> {
     return await this.userModel.findByIdAndRemove(id);
   }
 }

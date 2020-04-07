@@ -4,21 +4,24 @@ import { UserModule } from './user/user.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { MongooseModule } from '@nestjs/mongoose';
 import { APP_PIPE } from '@nestjs/core';
+import { HeroModule } from './hero/hero.module';
+import { Constants } from './assets/constants';
 
 @Module({
   imports: [    
     GraphQLModule.forRoot({
-      autoSchemaFile: 'schema.gql',
+      autoSchemaFile: Constants.SCHEMA_FILENAME,
       context: ({ req }) => ({ req }),
     }
     ),
-    MongooseModule.forRoot('mongodb://localhost/authTest', {
+    MongooseModule.forRoot(Constants.MONGODB_URL, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useFindAndModify: false,
     }),
     AuthModule,
     UserModule,
+    HeroModule,
   ],
   providers: [
     {
