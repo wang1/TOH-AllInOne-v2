@@ -26,7 +26,7 @@ export class HeroService {
   }
 
   async searchBySomeStringInName(someStringInName: string): Promise<Hero[]> {
-    return await this.heroModel.find({ name: new RegExp(someStringInName) }, 'name'); // 仅返回name字段即可
+    return await this.heroModel.find({ name: new RegExp(someStringInName) }, 'name'); // 仅返回name字段，id一直会有
   }
 
   async deleteOneById(id: string): Promise<Hero> {

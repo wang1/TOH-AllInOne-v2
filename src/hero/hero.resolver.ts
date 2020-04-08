@@ -35,7 +35,7 @@ export class HeroResolver {
   @Mutation(() => Hero)
   @Roles(ROLES.ADMIN)
   @UseGuards(JwtAuthGuard, RolesGuard)
-  async newHero(@Args('heroInput') heroInput: HeroInput) {
+  async addHero(@Args('heroInput') heroInput: HeroInput) {
     return this.heroService.create(heroInput);
   }
 
