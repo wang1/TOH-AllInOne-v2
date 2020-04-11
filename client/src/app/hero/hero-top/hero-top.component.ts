@@ -10,14 +10,14 @@ import { HeroService } from '../hero.service';
 export class HeroTopComponent implements OnInit {
 
   topHeroes: Hero[] = [];
-  isLoading = true;
+  // isLoading = true;
 
   constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
     this.heroService.getTopHeroes().subscribe(({ data }) => {
       this.topHeroes = data.getTopHeroes;
-      this.isLoading = false;
+      // this.isLoading = false;
     });
   }
 

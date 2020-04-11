@@ -2,8 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { HeroService } from '../hero.service';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Location } from '@angular/common';
+import { SharedService } from '../../shared/shared.service';
+
 
 @Component({
   selector: 'app-hero-edit',
@@ -13,28 +14,21 @@ import { Location } from '@angular/common';
 export class HeroEditComponent implements OnInit {
 
   heroForm: FormGroup;
-  id = '';
-  no = '';
-  name = '';
-  salary = 0;
-  description = '';
-  isTop = false;
-  // matcher = new MyErrorStateMatcher();
-  isLoading = false;
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private heroService: HeroService,
     private formBuilder: FormBuilder,
     private location: Location,
-    private snackBar: MatSnackBar,
+    private sharedServie: SharedService,
   ) { }
 
   ngOnInit(): void {
     this.heroForm = this.formBuilder.group({
+      id: [''],
       no: ['', Validators.required],
-      name: ['', Validators.required],
-      salary: [0],
+      name: ['', [Validators.required, Validators.minLength(4)]],
+      salary: [0, Validators.min(0)],
       description: [''],
       isTop: [false],
     });
@@ -42,8 +36,8 @@ export class HeroEditComponent implements OnInit {
     this.heroService
       .getOneHeroById(this.activatedRoute.snapshot.paramMap.get('id'))
       .subscribe(({ data }) => {
-        this.id = data.getOneHeroById.id;
         this.heroForm.setValue({
+          id: data.getOneHeroById.id,
           no: data.getOneHeroById.no,
           name: data.getOneHeroById.name,
           salary: data.getOneHeroById.salary,
@@ -54,12 +48,10 @@ export class HeroEditComponent implements OnInit {
   }
 
   onFormSubmit() {
-    this.isLoading = true;
+
     this.heroService.updateHero(this.heroForm.value).subscribe(() => {
-      this.isLoading = false;
-      this.snackBar.open(`${this.heroForm.value.name}保存成功!`, '关闭', {
-        duration: 2000,
-      });
+
+      this.sharedServie.openSnackBar(`${this.heroForm.value.name}修改成功！`);
       this.goBack();
     });
   }

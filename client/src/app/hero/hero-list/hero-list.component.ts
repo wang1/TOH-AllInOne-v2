@@ -12,7 +12,7 @@ import { MatPaginator } from '@angular/material/paginator';
 export class HeroListComponent implements OnInit {
 
   heroes: Hero[] = [];
-  isLoading = true;
+  // isLoading = true;
   // 决定表格中要显示的列和顺序，必须是HERO类的属性名，否则报错
   displayedColumns: string[] = ['no', 'name', 'salary', 'description', 'isTop'];
   dataSource: MatTableDataSource<Hero>; // 表格数据源
@@ -28,7 +28,7 @@ export class HeroListComponent implements OnInit {
       this.dataSource = new MatTableDataSource<Hero>(this.heroes);
       this.dataSource.paginator = this.paginator;
       // this.isLoading = result.loading;
-      this.isLoading = false;
+      // this.isLoading = false;
     });
   }
 }

@@ -14,6 +14,8 @@ import { MatSortModule } from '@angular/material/sort';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatProgressBarModule, MatProgressBar } from '@angular/material/progress-bar';
+import { MatRadioModule } from '@angular/material/radio';
 
 @NgModule({
   declarations: [],
@@ -30,9 +32,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatRadioModule,
     MatTooltipModule,
     MatGridListModule,
     MatAutocompleteModule,
+    MatProgressBarModule,
   ],
   exports: [
     MatInputModule, // 以下来自@angular/material模块
@@ -47,9 +51,11 @@ import { MatTooltipModule } from '@angular/material/tooltip';
     MatToolbarModule,
     MatSnackBarModule,
     MatCheckboxModule,
+    MatRadioModule,
     MatTooltipModule,
     MatGridListModule,
     MatAutocompleteModule,
+    MatProgressBar,
   ]
 })
 export class MyMaterialModule { }

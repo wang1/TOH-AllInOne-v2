@@ -2,10 +2,10 @@ import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
 import { GQL } from './hero.gql';
 import { of } from 'rxjs';
-import { HeroInput } from './hero.Input';
+import { HeroInput } from './hero.input';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root'  // 默认为应用级别的服务（从 Angular 6.0 开始，创建单例服务），可随处注入然后使用
 })
 export class HeroService {
 
@@ -69,7 +69,7 @@ export class HeroService {
 
   updateHero(heroInput: HeroInput) {
     return this.apollo.mutate<any>({
-      mutation: GQL.deleteHeroById,
+      mutation: GQL.updateHero,
       variables: { heroInput },
       refetchQueries: [{
         query: GQL.getAllHeroes,

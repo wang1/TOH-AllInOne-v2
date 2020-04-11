@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeroListComponent } from './hero/hero-list/hero-list.component';
-import { HeroTopComponent } from './hero/hero-top/hero-top.component';
-import { HeroDetailComponent } from './hero/hero-detail/hero-detail.component';
-import { HeroAddComponent } from './hero/hero-add/hero-add.component';
-import { HeroEditComponent } from './hero/hero-edit/hero-edit.component';
-import { HeroDetailResolverService } from './hero/hero-detail/hero-detail-resolver.service';
+import { HeroListComponent } from '../hero/hero-list/hero-list.component';
+import { HeroTopComponent } from '../hero/hero-top/hero-top.component';
+import { HeroDetailComponent } from '../hero/hero-detail/hero-detail.component';
+import { HeroAddComponent } from '../hero/hero-add/hero-add.component';
+import { HeroEditComponent } from '../hero/hero-edit/hero-edit.component';
+import { HeroDetailResolverService } from '../hero/hero-detail/hero-detail-resolver.service';
+import { LoginGuard } from '../auth/login.guard';
+import { LoginComponent } from '../auth/login/login.component';
 
 
 const routes: Routes = [
@@ -23,6 +25,7 @@ const routes: Routes = [
     path: 'hero-detail/:id',
     component: HeroDetailComponent,
     data: { animation: 'DetailPage' },
+    canActivate: [LoginGuard],
     // 注意使用了resolve预取数据, 且命名为result供组件使用
     //     在 hero-detail 中，它必须等待路由激活, 然后才能去获取对应的英雄。
 
@@ -43,11 +46,18 @@ const routes: Routes = [
     path: 'hero-add',
     component: HeroAddComponent,
     data: { animation: 'AddPage' },
+    canActivate: [LoginGuard],
   },
   {
     path: 'hero-edit/:id',
     component: HeroEditComponent,
     data: { animation: 'EditPage' },
+    canActivate: [LoginGuard],
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    pathMatch: 'full',
   },
   {
     path: '',

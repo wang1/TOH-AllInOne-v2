@@ -6,29 +6,19 @@ export const slideInAnimation = trigger('routeAnimations', [
     query(':enter, :leave', [
       style({
         position: 'absolute',
-        top: 20,
+        // 因根组件样式设置了左右边距，此处必须一致，否则发生抖动
         left: 20,
-        width: '100%',
+        right: 20,
+        // width: '100%',
       }),
     ], { optional: true }),
     group([
       query(':enter', [
-        animate(
-          '1000ms ease',
-          keyframes([
-            style({ transform: 'scale(0) translateX(100%)' }),
-            style({ transform: 'scale(0.5) translateX(50%)' }),
-            style({ transform: 'scale(1) translateX(0%)' }),
-          ]),
-        ),
+        style({ opacity: 0 }),
+        animate('500ms', style({ opacity: 1 })),
       ], { optional: true }),
       query(':leave', [
-        animate(
-          '500ms ease-in',
-          style(
-            { left: '-200%' }
-          )
-        ),
+        animate('300ms', style({ opacity: 0 })),
       ], { optional: true }),
     ]),
   ]),

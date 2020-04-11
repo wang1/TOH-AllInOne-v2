@@ -3,7 +3,7 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background: rgba(0,0,0,.05);}
 
 .container {
   position: relative;
@@ -17,17 +17,26 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   padding: 10px;
 }
 
-.loading-shade {
-  position: absolute;
+// .loading-shade {
+//   position: absolute;
+//   top: 0;
+//   left: 0;
+//   bottom: 56px;
+//   right: 0;
+//   background: rgba(0, 0, 0, 0.1);
+//   z-index: 11;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// }
+
+.progress-bar-container {
+  height: 2px;
+  overflow: hidden;
+  position: fixed;
   top: 0;
-  left: 0;
-  bottom: 56px;
-  right: 0;
-  background: rgba(0, 0, 0, 0.15);
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  width: 100vw;
+  z-index: 90;
 }
 
 .flat-button {

@@ -7,5 +7,5 @@ export class UserInput {
   username: string;
   @MinLength(4)
   password: string;
-  role: string;
+  role?: string;
 }

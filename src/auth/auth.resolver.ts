@@ -8,8 +8,7 @@ export class AuthResolver {
   constructor(private authService: AuthService) { }
 
   @Query(() => AuthToken)
-  // @UseGuards(LocalAuthGuard)
-  async login(@Args('loginUser') userInput: UserInput) {
+  async login(@Args('userInput') userInput: UserInput) {
     return this.authService.validateUser(userInput);
   }
 
