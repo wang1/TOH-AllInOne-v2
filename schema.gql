@@ -47,7 +47,7 @@ type Query {
 enum ROLES {
   ADMIN
   TEACHER
-  STUDENT
+  PUBLIC
 }
 
 type User {

@@ -1,5 +1,5 @@
 export const Constants = {
-  URL: 'http://localhost:3000/graphql',
+  URL: 'http://218.194.167.107:3000/graphql',
 };
 
 export enum ROLES {
