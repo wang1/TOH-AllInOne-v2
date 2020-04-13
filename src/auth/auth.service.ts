@@ -5,7 +5,7 @@ import { JwtService } from '@nestjs/jwt';
 import { UserInput } from 'src/user/user.input';
 import { AuthToken } from './auth-token.model';
 
-
+// 参考https://hasura.io/blog/best-practices-of-using-jwt-with-graphql/
 @Injectable()
 export class AuthService {
   constructor(private userService: UserService, private readonly jwtService: JwtService) { }
@@ -23,6 +23,7 @@ export class AuthService {
 
   async logout(): Promise<string> {
     // 通知Angular停用token即可？？？
+    // 该方法无需，用户logout时，客户端删除token即可
     return 'ok';
   }
 }

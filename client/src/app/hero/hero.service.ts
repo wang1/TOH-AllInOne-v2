@@ -36,7 +36,8 @@ export class HeroService {
   }
 
   getHeroesBySomeStringInName(someStringInName: string) {
-    // if not search term, return empty data object.非常重要, 否则组件将阻塞???试一试，再写详细点
+    // if not search term, return empty data object.
+    // 非常重要, 否则当搜索为空时（如输入了个字母s，然后又将其删除）将得到所有hero名称
     if (!someStringInName.trim()) {
       return of({ data: {} });
     }

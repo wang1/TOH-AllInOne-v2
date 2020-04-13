@@ -5,7 +5,7 @@ export const Constants = {
 export enum ROLES {
   ADMIN = 'admin',
   TEACHER = 'teacher',
-  STUDENT = 'student',
+  PUBLIC = 'public',
 }
 
 export enum ERROR_TYPE {
@@ -13,7 +13,7 @@ export enum ERROR_TYPE {
   BAD_REQ = 'Bad Request',
   UNAUTHORIZED = 'Unauthorized',
   FORBIDDEN = 'Forbidden',
-  OTHER = 'other',
+  OTHERS = 'others',
 }
 
 export enum ERROR_MESSAGE {
@@ -21,5 +21,6 @@ export enum ERROR_MESSAGE {
   BAD_REQ = '输入有误，请检查。',
   UNAUTHORIZED = '登录失败，请检查。',
   FORBIDDEN = '没有权限，请检查。',
-  OTHER = '服务器内部错误，请重试或报告。',
+  OTHERS = '服务器内部错误，请重试或报告。',
+  NEED_lOGIN = '请登录。',
 }

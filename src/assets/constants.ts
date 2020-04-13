@@ -11,7 +11,7 @@ export const Constants = {
 export enum ROLES {
   ADMIN = 'admin',
   TEACHER = 'teacher',
-  STUDENT = 'student',
+  PUBLIC = 'public',
 };
 
 registerEnumType(

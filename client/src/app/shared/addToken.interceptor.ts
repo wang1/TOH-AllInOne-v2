@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { tap, finalize, delay, retry } from 'rxjs/operators';
+import { finalize, retry } from 'rxjs/operators';
 import { SharedService } from './shared.service';
 
 // http拦截器，顺便设置是否在加载isLoading
@@ -20,7 +20,8 @@ export class AddTokenInterceptor implements HttpInterceptor {
     // 3. Change detection runs on child views
     // 4. AfterViewChecked, AfterViewInit
 
-    // 此处需要这样，否则会引发上面的异常，跟生命周期有关
+    // 此处不能直接置isLoading为true，虽然进度条能正常显示。
+    // 而需要这样，否则会引发上面的异常，跟生命周期有关。
     // 因为其在appComponent中的ngIf使用，而该组件初始化时得知其为false。同时因发起了网络请求，被拦截后马上isLoading设为true，
     // 那么就发生了刚刚检查DoCheck是false，立刻就变成了true的异常事件，而此时组件还未呈现
     // 所以此处不设置值，发起网络请求时直接设置为true，取数据过程中组件开始呈现（进度条显示）
@@ -42,6 +43,7 @@ export class AddTokenInterceptor implements HttpInterceptor {
 
     // 头部验证也可放在Apollo的Graphql模块中，参见https://www.apollographql.com/docs/angular/recipes/authentication/ 
     // req及res都是不可变对象，所以需要clone
+    // 如果有token，表明用户已经登录成功，直接附上token在header中
     const newReq = this.sharedService.token ? req.clone({ setHeaders: { Authorization: this.sharedService.token } }) : req;
 
     return next.handle(newReq)

@@ -1,9 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Apollo } from 'apollo-angular';
-import { SharedService } from '../shared/shared.service';
 import { UserInput } from '../user/user.input';
 import gql from 'graphql-tag';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 
 const loginGql = gql`
   query login($userInput: UserInput!) {
