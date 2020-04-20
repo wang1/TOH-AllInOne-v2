@@ -7,7 +7,7 @@
   <mat-card class="card">
     <form [formGroup]="heroForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field class="full-width">
-        <input matInput placeholder="编号" formControlName="no">
+        <input matInput placeholder="编号" formControlName="no" required>
         <mat-error>
           <span *ngIf="!heroForm.get('no').valid && heroForm.get('no').touched">
             请输入编号
@@ -37,7 +37,7 @@
       </div>
       <div style="text-align: center;">
         <span class="flat-button">
-          <button type="submit" [disabled]="!heroForm.valid" 
+          <button type="submit" [disabled]="!heroForm.valid || !heroForm.dirty" 
                   mat-raised-button color="primary" matTooltip="保存英雄">
             <mat-icon>save</mat-icon>保 存
           </button>

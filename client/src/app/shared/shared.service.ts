@@ -64,8 +64,9 @@ export class SharedService {
     this.isLogined = false;
     this.loginUsername = '';
     this.token = '';
-    this.redirectUrl = '/hero-list';
-    this.router.navigateByUrl(this.redirectUrl);
+    // this.redirectUrl = '/hero-list';
+    // this.router.navigateByUrl(this.redirectUrl);
+    this.router.navigate(['']);
   }
   // 参考https://www.apollographql.com/docs/angular/features/error-handling/
   // https://blog.apollographql.com/full-stack-error-handling-with-graphql-apollo-5c12da407210

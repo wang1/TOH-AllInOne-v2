@@ -7,7 +7,7 @@ import { HeroInput } from './hero.input';
 
 @Injectable()
 export class HeroService {
-  constructor(@InjectModel(Constants.HERO_MODEL) private heroModel: Model<Hero>) {}
+  constructor(@InjectModel(Constants.HERO_MODEL) private heroModel: Model<Hero>) { }
 
   async create(heroInput: HeroInput): Promise<Hero> {
     return await this.heroModel(heroInput).save();
@@ -22,7 +22,7 @@ export class HeroService {
   }
 
   async findTopHeroes(): Promise<Hero> {
-    return await this.heroModel.find({ isTop: true});
+    return await this.heroModel.find({ isTop: true });
   }
 
   async searchBySomeStringInName(someStringInName: string): Promise<Hero[]> {
@@ -34,7 +34,7 @@ export class HeroService {
   }
 
   async update(heroInput: HeroInput): Promise<Hero> {
-    return await this.heroModel.findByIdAndUpdate(heroInput.id, heroInput, {new: true});  // 返回更新后的对象，默认是原始对象
+    return await this.heroModel.findByIdAndUpdate(heroInput.id, heroInput, { new: true });  // 返回更新后的对象，默认是原始对象
   }
 
 }

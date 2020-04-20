@@ -36,6 +36,10 @@ export class HeroDetailComponent implements OnInit {
     this.heroService.deleteHeroById(this.hero.id).subscribe(() => {
 
       this.sharedService.openSnackBar(`${this.hero.name}成功删除!`);
+      // back()可能有异常，在列表或顶级英雄页面点击某英雄时，本来应该去英雄详情页面，而此时没登录，
+      // 将会跳转到登录页面，登录成功后，会显示英雄详情页面，此时点击删除，
+      // 成功后会返回到登录页面！！！
+      // 所以此处还是返回到什么地方好呢？？？
       this.location.back();
     });
   }

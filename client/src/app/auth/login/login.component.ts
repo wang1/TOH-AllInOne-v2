@@ -27,7 +27,8 @@ export class LoginComponent implements OnInit {
       // role: [ROLES.TEACHER],
     });
   }
-
+  // 登录如果有错，则被全局错误拦截并显示错误信息，此次是登录成功的处理
+  // 下面data的写法请注意不能错： ({ data })
   login() {
     this.loginService.login(this.loginForm.value).subscribe( ({ data })  => {
       const token = data.login.token;

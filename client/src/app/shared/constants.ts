@@ -1,3 +1,5 @@
+import { LoneSchemaDefinition } from 'graphql/validation/rules/LoneSchemaDefinition';
+
 export const Constants = {
   URL: 'http://10.1.244.100:3000/graphql',
 };
@@ -24,3 +26,14 @@ export enum ERROR_MESSAGE {
   OTHERS = '服务器内部错误，请重试或报告。',
   NEED_lOGIN = '请登录。',
 }
+
+
+// 成功启动MongoDB后，再打开一个命令行窗口输入mongo，就可以进行数据库的一些操作。
+
+// 输入help可以看到基本操作命令：
+// show dbs:显示数据库列表 
+// show collections：显示当前数据库中的集合（类似关系数据库中的表） 
+// show users：显示用户
+// use <db name>：切换当前数据库，这和MS-SQL里面的意思一样 
+// 1、添加
+// db.users.save({name: ‘zhangsan’, age: 25, sex: true});

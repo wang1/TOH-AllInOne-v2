@@ -28,6 +28,7 @@ input HeroInput {
 type Mutation {
   addUser(userInput: UserInput!): User!
   deleteUserById(id: String!): User!
+  updateUser(userInput: UserInput!): User!
   addHero(heroInput: HeroInput!): Hero!
   updateHero(heroInput: HeroInput!): Hero!
   deleteHeroById(id: String!): Hero!

@@ -8,13 +8,13 @@
   <mat-card class="card">
     <form [formGroup]="heroForm" (ngSubmit)="onFormSubmit()">
       <mat-form-field class="full-width">
-        <input matInput placeholder="编号" formControlName="no">
+        <input matInput placeholder="编号" formControlName="no" required>
         <mat-error>
           <span *ngIf="!heroForm.get('no').valid && heroForm.get('no').touched">请输入编号</span>
         </mat-error>
       </mat-form-field>
       <mat-form-field class="full-width">
-        <input matInput placeholder="英雄姓名(>4)" formControlName="name">
+        <input matInput placeholder="英雄姓名(>4)" formControlName="name" required>
         <mat-error>
           <span *ngIf="!heroForm.get('name').valid && heroForm.get('name').touched">英雄请留名</span>
         </mat-error>

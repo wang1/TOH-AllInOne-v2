@@ -14,7 +14,7 @@ export class UserService {
   async create(userInput: UserInput): Promise<User> {
     // 10是默认的盐值，将与密码一起被hash，有固定长度16b及位置
     const password = await bcryptjs.hash(userInput.password, 10);
-    return await this.userModel({...userInput, password}).save();
+    return await this.userModel({ ...userInput, password }).save();
   }
 
   async findAll(): Promise<User[]> {
@@ -22,7 +22,7 @@ export class UserService {
   }
 
   async findOneByName(username: string): Promise<User> {
-    return await this.userModel.findOne({username: username});
+    return await this.userModel.findOne({ username: username });
   }
 
   async findOneById(id: string): Promise<User> {
@@ -31,5 +31,9 @@ export class UserService {
 
   async deleteOneById(id: string): Promise<boolean> {
     return await this.userModel.findByIdAndRemove(id);
+  }
+
+  async update(userInput: UserInput): Promise<User> {
+    return await this.userModel.findByIdAndUpdate(userInput.id, userInput, { new: true });
   }
 }

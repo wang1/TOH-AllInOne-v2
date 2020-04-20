@@ -14,8 +14,7 @@ export class UserResolver {
 
   @Query(() => [User])
   @Roles(ROLES.ADMIN)
-    // JwtAuthGuard是
-  @UseGuards(JwtAuthGuard, RolesGuard)  // JwtAuth
+  @UseGuards(JwtAuthGuard, RolesGuard)
   async getAllUsers(@CurrentUser() loginedUser: User) {
     return this.userService.findAll();
   }
@@ -26,14 +25,23 @@ export class UserResolver {
   }
 
   @Mutation(() => User)
-  @UseGuards(JwtAuthGuard)
+  @Roles(ROLES.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   async addUser(@Args('userInput') userInput: UserInput) {
     return this.userService.create(userInput);
   }  
 
   @Mutation(() => User)
-  @UseGuards(JwtAuthGuard)
+  @Roles(ROLES.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
   async deleteUserById(@Args('id') id: string) {
     return this.userService.deleteOneById(id);
+  }
+
+  @Mutation(() => User)
+  @Roles(ROLES.ADMIN)
+  @UseGuards(JwtAuthGuard, RolesGuard)
+  async updateUser(@Args('userInput') userInput: UserInput) {
+    return this.userService.update(userInput);
   }
 }

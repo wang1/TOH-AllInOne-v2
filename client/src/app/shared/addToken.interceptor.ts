@@ -12,6 +12,8 @@ export class AddTokenInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
+    console.log('HTTP...');
+
     // ExpressionChangedAfterItHasBeenCheckedError is a development check to ensure 
     // bindings update in a manner Angular expects.
     // The order of change detection when it run is as follows:
@@ -48,7 +50,7 @@ export class AddTokenInterceptor implements HttpInterceptor {
 
     return next.handle(newReq)
       .pipe(
-        retry(2), // 总共3次，在网络烂时有效
+        // retry(2), // 总共3次，在网络烂时有效
           // delay(1000),
         // RxJS 的 tap 操作符会捕获请求成功了还是失败了。 
         // RxJS 的 finalize 操作符无论在响应成功还是失败时都会调用（这是必须的），然后把结果汇报给 sharedService。

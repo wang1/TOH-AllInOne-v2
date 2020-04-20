@@ -23,7 +23,6 @@ export class AppComponent {
   }
 
   logout() {
-    this.sharedService.isLogined = false;
-    this.router.navigate(['']);
+    this.sharedService.logoutConfig();
   }
 }

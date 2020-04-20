@@ -1,4 +1,4 @@
-import { ErrorHandler, Injectable, NgZone } from '@angular/core';
+import { ErrorHandler, Injectable } from '@angular/core';
 import { SharedService } from './shared.service';
 
 // 全局error处理器，引入myProviders后导入到appModule中
@@ -6,7 +6,7 @@ import { SharedService } from './shared.service';
 @Injectable()
 export class AppGlobalErrorHandler implements ErrorHandler {
 
-  constructor(private sharedService: SharedService, private zone: NgZone) { }
+  constructor(private sharedService: SharedService) { }
 
   handleError(error) {
     console.log(error.message); // 开发阶段有效，产品阶段无用。应该上传相关错误到服务器，如果网络正常的话

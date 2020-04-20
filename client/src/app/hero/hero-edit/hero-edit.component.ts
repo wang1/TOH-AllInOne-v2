@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { HeroService } from '../hero.service';
 import { Location } from '@angular/common';
 import { SharedService } from '../../shared/shared.service';
@@ -21,6 +21,7 @@ export class HeroEditComponent implements OnInit {
     private formBuilder: FormBuilder,
     private location: Location,
     private sharedServie: SharedService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
@@ -52,7 +53,10 @@ export class HeroEditComponent implements OnInit {
     this.heroService.updateHero(this.heroForm.value).subscribe(() => {
 
       this.sharedServie.openSnackBar(`${this.heroForm.value.name}修改成功！`);
-      this.goBack();
+      // 使用goBack()将显示修改前的数据，所以应该使用导航
+      // this.goBack();
+      this.router.navigate(['/hero-detail', this.heroForm.value.id]);
+
     });
   }
 
