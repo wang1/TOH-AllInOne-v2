@@ -1,5 +1,6 @@
 list请求指定条数英雄
 顶级英雄未更新问题
+pm2管理nodejs的运行 https://pm2.keymetrics.io/docs/usage/quick-start/
 
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
