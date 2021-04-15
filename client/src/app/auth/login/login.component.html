@@ -16,7 +16,10 @@
       </p>
       <p>
         <mat-form-field>
-          <input type="password" matInput placeholder="密码" formControlName="password" required>
+          <input id="pwd" type="password" matInput placeholder="密码" formControlName="password" required>
+          <a onclick="pwd.type = (pwd.type === 'text')? 'password' : 'text'">eye
+            <mat-icon class="eye">eye</mat-icon>
+          </a>
           <mat-error>
             <span *ngIf="!loginForm.get('password').valid && loginForm.get('password').touched">请输入密码</span>
           </mat-error>
@@ -30,7 +33,7 @@
       </p> -->
       <p class="button">
         <button type="submit" mat-flat-button color="primary" [disabled]="!loginForm.valid">
-          确 定 <mat-icon class="icon">exit_to_app</mat-icon>
+          确 定<mat-icon class="icon">exit_to_app</mat-icon>
         </button>
         
       </p>

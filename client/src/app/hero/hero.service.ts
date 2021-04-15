@@ -72,7 +72,7 @@ export class HeroService {
         const data = store.readQuery({ query: GQL.getAllHeroes });
         // 将我们突变的评论添加到最后。
         // 注意getAllHeroes必须与gql中的一致
-        data.getAllHeroes.push(addHero);
+        // data.getAllHeroes.push(addHero);
         // 将我们的数据写回缓存。
         store.writeQuery({ query: GQL.getAllHeroes, data });
       },
@@ -97,7 +97,7 @@ export class HeroService {
       update: (store, { data: deleteHeroById }) => {
 
         const data = store.readQuery({ query: GQL.getAllHeroes });
-        data.getAllHeroes = data.getAllHeroes.filter(hero => hero.id !== id);
+        // data.getAllHeroes = data.getAllHeroes.filter(hero => hero.id !== id);
         store.writeQuery({ query: GQL.getAllHeroes, data });
       },
       // refetchQueries: [{
